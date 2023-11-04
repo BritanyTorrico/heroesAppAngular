@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { environments } from 'src/environments/environments';
 import { User } from '../interfaces/user.interface';
 import { Observable, tap, of, map, catchError } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 
 @Injectable({providedIn: 'root'})
@@ -36,13 +38,40 @@ export class AuthService {
       catchError(err => of(false))
     )
 
-
-
-  }
+}
 
   logout(){
     this.user=undefined;
     localStorage.clear();
+  }
+  generateRandomNumericId(): number {
+    return Math.floor(Math.random() * 1000); // Genera un número aleatorio entre 0 y 999
+  }
+
+  newUser(form: FormGroup){
+    const url=`${this.baseUrl}/users`;
+    const newRandomId: number =this.generateRandomNumericId();
+
+    const newUser1: User = {
+      id: newRandomId,
+      user: form.controls['username'].value,
+      email: form.controls['email'].value
+    };
+
+    this.http.post(url,newUser1).subscribe((response) => {
+      console.log('Usuario Agregado:', response);
+    });
+
+
+
+
+      // const user1={
+    //   id: 2,
+    //   user: form.controls['name'].value,
+    //   user: form.controls['username'].value,
+    //   email:form.controls['email'].value,
+    //    password: form.controls['password'].value,
+    // }
   }
 
 

@@ -3,7 +3,27 @@
     {
       "id": 1,
       "user": "administrador",
-      "email": "john.due@gmail.com"
+      "email": "briTorrico@gmail.com"
+    },
+    {
+      "id": 2,
+      "user": "prueba",
+      "email": "prueba@gmail.com"
+    },
+    {
+      "id": 3,
+      "user": "prueba",
+      "email": "prueba@gmail.com"
+    },
+    {
+      "id": 5,
+      "user": "ejemploUsuario",
+      "email": "ejemplo@email.com"
+    },
+    {
+      "id": 878,
+      "user": "nueva3",
+      "email": "prueba123q@gmail.cim"
     }
   ],
   "heroes": [

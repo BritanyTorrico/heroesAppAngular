@@ -1,25 +1,53 @@
 <div class="flex flex-column">
   <span class="text-lg mb-4">Registro</span>
 
-  <mat-form-field>
-    <mat-label>Usuario</mat-label>
-    <input type="text" matInput placeholder="Nombre de usuario">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Nombre</mat-label>
-    <input type="text" matInput placeholder="Ingresa tu nombre">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Contraseña</mat-label>
-    <input type="password" matInput placeholder="Contraseña">
-  </mat-form-field>
+  <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="flex flex-column">
 
- <button mat-button mat-flat-button color="primary">
-  <mat-icon>save</mat-icon>
-  Crear cuenta
-</button>
+      <mat-form-field class="full-width">
+        <mat-label>Usuario</mat-label>
+        <input type="text" matInput placeholder="Nombre de usuario"
+          formControlName="username">
+        <mat-error *ngIf="isValidField('username')">El campo es requerido.</mat-error>
+      </mat-form-field>
 
-<div class="flex justify-content-end mt-5">
-  <a routerLink="/auth/login">No tienes una cuenta?</a>
-</div>
+      <mat-form-field class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input type="text" matInput placeholder="Ingresa tu nombre"
+          formControlName="name">
+        <mat-error *ngIf="isValidField('name')">Ingrese su nombre y apellido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input type="text" matInput placeholder="Ingresa tu email"
+          formControlName="email">
+        <mat-error *ngIf="isValidField('name')">Ingrese su email</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input type="password" matInput placeholder="Contraseña"
+          formControlName="password">
+        <mat-error *ngIf="isValidField('password')">El campo es requerido.</mat-error>
+      </mat-form-field>
+
+      <button mat-button mat-flat-button color="primary"
+        (click)="createAcount()">
+        <mat-icon>save</mat-icon>
+        Crear cuenta
+      </button>
+    </div>
+
+  </form>
+
+  <div class="flex justify-content-end mt-5">
+    <a routerLink="/auth/login">No tienes una cuenta?</a>
+  </div>
+
+  <span>Value</span>
+  <pre>{{ myForm.value | json }}</pre>
+  <h5>valid</h5>
+  <pre>{{ myForm.controls['name'].errors | json }}</pre>
+
 </div>
